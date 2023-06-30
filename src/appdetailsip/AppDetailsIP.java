@@ -12,6 +12,5 @@ public class AppDetailsIP {
     public static void main(String[] args) {
         User u = new User();
         u.setVisible(true);
-        //pruev
     }   
 }

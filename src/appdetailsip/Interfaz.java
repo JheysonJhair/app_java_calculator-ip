@@ -1,17 +1,12 @@
 package appdetailsip;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import static javax.swing.GroupLayout.Alignment.CENTER;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**-
  *
@@ -19,10 +14,9 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Interfaz extends javax.swing.JFrame {
 
-    /**
+/**
      * Creates new form Interfaz
      */
-    private String user;
     public Interfaz() {
         initComponents();
         setLocationRelativeTo(null);
@@ -33,7 +27,6 @@ public class Interfaz extends javax.swing.JFrame {
     }
     String ipRed;
     public void setDato(String user){
-        this.user = user;
         lblUser.setText(user.toUpperCase());
     }
     
@@ -70,8 +63,7 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }
     
-    //Init
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //----------------------------------------------------------------SUB REDES
     
     private  void calculateSubnet(String ipAddress, int subnetCount) {
         try {
@@ -80,35 +72,27 @@ public class Interfaz extends javax.swing.JFrame {
             int prefixLength = getPrefixLength(networkClass);
             int subnetBits = getSubnetBits(subnetCount);
             int newPrefixLength = prefixLength + subnetBits;
-            int networkSize = calculateNetworkSize(newPrefixLength);
-            
+            int networkSize = calculateNetworkSize(newPrefixLength);           
             String subnetMask = calculateSubnetMask(newPrefixLength);
+            
             int lengh = obtenerValorDistinto(subnetMask);
             int jumpSize = calculateJumpSize(subnetCount);
             String ipr = ipRed;
             
-               
-            System.out.println("Dirección de red: " + networkAddress.getHostAddress());
-            System.out.println("Mascara: " + lengh);
-            System.out.println("Clase de red: " + networkClass);
-            System.out.println("Máscara de subred: " + subnetMask);
-            System.out.println("Número de direcciones IP por subred: " + (networkSize - 2)); // Restamos la dirección de red y la dirección de broadcast
-            System.out.println("Salto de red: " + jumpSize);
-            
-
-            
+            //Llenando datos de subNet
             
             lblMascaraSr.setText(""+subnetMask);
             lblnroips.setText(String.valueOf(networkSize));
             lblSalto.setText(String.valueOf(jumpSize));
-            ////////////////////////////////
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("Nro");
             
-            model.addColumn("Sub Red");
-            model.addColumn("IPS Conf");
-            model.addColumn("Broadcast");
+            //Llenando la tabla
 
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("NRO");            
+            model.addColumn("SUB RED");
+            model.addColumn("IPS CONFIGURABLES");
+            model.addColumn("BROADCAST");
+            // Obtener la columna específica por índice
             int cont = 0;
             String[] parts = ipr.split("\\.");
             String p1,p2,p3;
@@ -139,10 +123,8 @@ public class Interfaz extends javax.swing.JFrame {
             }          
             // Asignar el modelo a la tabla existente
             tabla.setModel(model);
-
-            ////////////////////////////////
+            
         } catch (UnknownHostException e) {
-            e.printStackTrace();
         }
     }
     private static String getNetworkClass(InetAddress networkAddress) {
@@ -235,31 +217,15 @@ public class Interfaz extends javax.swing.JFrame {
         }
         return -1; // Valor de retorno para indicar que no se encontró un valor distinto de 0 o 255
     }
-    
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    //finish
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //----------------------------------------------------------------------------------------------
     //FUNCION PARA VERIFICAR LA MASCARA DE RED - CLASE - IDENTIFICADOR DE RED -NUMERO DE REDES
     public void verificarMascaraRed(String direccionIP, JLabel lblMascaraRed, JLabel lblClase,  JLabel lblIdentificadorRed,JLabel lblNumeroRedes) {
         String[] octetos = direccionIP.split("\\.");
-        String mascaraRed = lblMascaraRed.getText();
            
         int numeroRedes = 0;
         int primerOcteto = Integer.parseInt(octetos[0]);
         int segundoOcteto = Integer.parseInt(octetos[1]);
         int tercerOcteto = Integer.parseInt(octetos[2]);
-        int cuartoOcteto = Integer.parseInt(octetos[3]);
         
         // Determinar la clase de la dirección IP
         char claseIP;
@@ -400,29 +366,23 @@ public class Interfaz extends javax.swing.JFrame {
                 mascaraSubredComplementadaBinaria += "1";
             }
         }
-
         // Realizar una operación "AND" bit a bit entre la dirección IP y la máscara de subred complementada para obtener la dirección IP del host
-        String direccionHostBinaria = "";
+
         for (int i = 0; i < 32; i++) {
             if (direccionIPBinaria.charAt(i) == '1' && mascaraSubredComplementadaBinaria.charAt(i) == '1') {
-                direccionHostBinaria += "1";
             } else {
-                direccionHostBinaria += "0";
             }
         }
 
         // Convertir el identificador de host de su forma binaria a su forma decimal puntada
         String identificadorHostDecimalPuntado = "";
         String direccionRedDecimalPuntado = "";
-        String direccionHostDecimalPuntado = "";
         for (int i = 0; i < 4; i++) {
             identificadorHostDecimalPuntado += Integer.parseInt(identificadorHostBinario.substring(i * 8, (i + 1) * 8), 2);
             direccionRedDecimalPuntado += Integer.parseInt(direccionRedBinaria.substring(i * 8, (i + 1) * 8), 2);
-            direccionHostDecimalPuntado += Integer.parseInt(direccionHostBinaria.substring(i * 8, (i + 1) * 8), 2);
             if (i < 3) {
                 identificadorHostDecimalPuntado += ".";
                 direccionRedDecimalPuntado += ".";
-                direccionHostDecimalPuntado += ".";
             }
         }
         
@@ -578,12 +538,6 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1.setText("Dirección IP:");
 
         txtCampo1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 17)); // NOI18N
-        txtCampo1.setText("77");
-        txtCampo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCampo1ActionPerformed(evt);
-            }
-        });
         txtCampo1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCampo1KeyPressed(evt);
@@ -617,11 +571,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         txtCampo4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 17)); // NOI18N
         txtCampo4.setText("5");
-        txtCampo4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCampo4ActionPerformed(evt);
-            }
-        });
         txtCampo4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCampo4KeyPressed(evt);
@@ -749,7 +698,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(jLabel18)
                     .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBroadcast, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCantidadIp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -762,14 +711,14 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(lblNumeroRedes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblCantidadIpConfig, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50))
+                .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(9, 9, 9)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel25)
                         .addComponent(jLabel26))
-                    .addContainerGap(341, Short.MAX_VALUE)))
+                    .addContainerGap(291, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -836,11 +785,6 @@ public class Interfaz extends javax.swing.JFrame {
         lblUser.setText("Anonimo");
 
         txtSubRed.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 17)); // NOI18N
-        txtSubRed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSubRedActionPerformed(evt);
-            }
-        });
         txtSubRed.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSubRedKeyPressed(evt);
@@ -850,25 +794,17 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3.setBackground(java.awt.Color.lightGray);
         jLabel3.setText("Sub Red:");
 
-        tabla.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 16)); // NOI18N
+        tabla.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NRO", "IP SUB RED", "IPS CONFIGURABLES", "BROADCAST"
+
             }
         ));
-        tabla.setRowHeight(35);
+        tabla.setRowHeight(30);
         jScrollPane1.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setMinWidth(50);
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(0).setMaxWidth(50);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(20);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(20);
-        }
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Detalles de la Sub Red", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 15), new java.awt.Color(102, 102, 102))); // NOI18N
 
@@ -921,7 +857,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMascaraSr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtclasesb, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIpsSubRed)
                     .addComponent(jLabel37))
@@ -929,7 +865,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblnroips, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSalto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -999,8 +935,8 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addComponent(jButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(12, 12, 12))
@@ -1009,7 +945,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 23, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1060,12 +996,12 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1140,18 +1076,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtSubRedKeyPressed
-
-    private void txtSubRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubRedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSubRedActionPerformed
-
-    private void txtCampo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCampo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCampo4ActionPerformed
-
-    private void txtCampo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCampo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCampo1ActionPerformed
 
     /**
      * @param args the command line arguments
