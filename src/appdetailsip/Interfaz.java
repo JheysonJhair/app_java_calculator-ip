@@ -82,7 +82,7 @@ public class Interfaz extends javax.swing.JFrame {
             //Llenando datos de subNet
             
             lblMascaraSr.setText(""+subnetMask);
-            lblnroips.setText(String.valueOf(networkSize));
+            lblnroips.setText(String.valueOf(networkSize-2));
             lblSalto.setText(String.valueOf(jumpSize));
             
             //Llenando la tabla
@@ -1191,10 +1191,10 @@ public class Interfaz extends javax.swing.JFrame {
         lblNumeroRedes.setText("...");
         
         //SUB RED
-        txtclasesb.setText("");
-        lblMascaraSr.setText("");
-        lblSalto.setText("");
-        lblnroips.setText("");
+        txtclasesb.setText("...");
+        lblMascaraSr.setText("...");
+        lblSalto.setText("...");
+        lblnroips.setText("...");
     }
     private void LimpiarIp(){
         txtCampo1.setText("");
