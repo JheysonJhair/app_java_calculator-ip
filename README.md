@@ -9,7 +9,7 @@
 [![github](https://img.shields.io/static/v1?label=&message=github&color=171515&logo=github&logoColor=white&style=for-the-badge)](https://github.com/JheysonJhair)
 
 ## 👉 Descripción
-Es un proyecto creado en el entorno de NetBenas - Java, que como tal es un software que permite el cálculo de todo lo relacionado con la dirección ip y asi mimso dividir en sub redes.
+Es un proyecto creado en el entorno de NetBeans - Java, que como tal es un software que permite el cálculo de todo lo relacionado con la dirección ip y asi mismo dividir en sub redes.
 
 ## Instalación
 Este proyecto no necesita instalación. Simplemente abre la carpeta src y click el main.
