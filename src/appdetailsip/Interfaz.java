@@ -523,6 +523,7 @@ public class Interfaz extends javax.swing.JFrame {
         lblIpsSubRed = new javax.swing.JLabel();
         lblnroips = new javax.swing.JLabel();
         lblSalto = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -794,7 +795,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3.setBackground(java.awt.Color.lightGray);
         jLabel3.setText("Sub Red:");
 
-        tabla.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        tabla.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -894,6 +895,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jLabel4.setText("By: Jheyson Jhair Arone Angeles");
+
         jMenu1.setText("Menu");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/asercade.png"))); // NOI18N
@@ -932,6 +936,8 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1007,7 +1013,8 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
-                        .addComponent(lblUser)))
+                        .addComponent(lblUser)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1133,6 +1140,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
