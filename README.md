@@ -1,21 +1,40 @@
-## Programador - desarrollador web y diseñador UI/UX
-**Mr. Jheyson Jhair**
+<div align="center">
+    <a href="https://github.com/JheysonJhair/calculator_ip.git">
+      <img src="public/logo.jpg" width="148px" />
+    </a>
+    <h1>Unamba - Calculadora ip</h1>
+    <p align="center">
+        Full Stack Developer Jhair
+    </p>
+</div>
 
-## Calculadora de IPS y sub redes
-[![Header](https://nombre.vukki.net/significado/imagen/0-0-0-0-0/M/jhair.jpg "Header")]()
+## Preview
 
-[![instagram](https://img.shields.io/static/v1?label=&message=instagram&color=5B51D8&logo=instagram&logoColor=white&style=for-the-badge)](https://www.instagram.com/jheyson_jhair_aa/)
-[![discord](https://img.shields.io/static/v1?label=&message=discord&color=7289da&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/2J7dPnURHc)
-[![github](https://img.shields.io/static/v1?label=&message=github&color=171515&logo=github&logoColor=white&style=for-the-badge)](https://github.com/JheysonJhair)
+![Preview](public/preview.png)
 
-## 👉 Descripción
-Es un proyecto creado en el entorno de NetBeans - Java, que como tal es un software que permite el cálculo de todo lo relacionado con la dirección ip y asi mismo dividir en sub redes.
 
-## Instalación
-Este proyecto no necesita instalación. Simplemente abre la carpeta src y click el main.
+## Tecnologías
 
-## Contratación
-Si quieres contratarme puedes escribirme  a jhair2003unamba@gmail.com para consultas.
+Este proyecto utiliza las siguientes tecnologías:
 
-## 📝 Elementos utilizados:
-- [Java]
+- Java
+
+## Cómo levantar el proyecto
+
+1. Clona el repositorio.
+
+```bash
+git clone https://github.com/JheysonJhair/calculator_ip.git
+```
+
+```bash
+cd calculator_ip
+```
+
+2. Ejecuta tu entorno de desarrollo para java y abre el proyecto
+
+3. Establece como proyecto de inicio `appdetailsip/AppdetailsIP.java`.
+
+4. Ejecuta la aplicación.
+
+¡Listo! Ahora puedes comenzar a trabajar en la aplicación sin problemas.
