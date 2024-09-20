@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="https://github.com/JheysonJhair/ip_calculator.git">
+    <a href="https://github.com/JheysonJhair/app_java_calculator-ip">
       <img src="public/Logo.png" width="108px" />
     </a>
     <h1>JhairDev - Calculadora IP</h1>
@@ -27,5 +27,5 @@ Bienvenido a la **Calculadora de IP**, una aplicación que facilita el cálculo 
 
 2. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/JheysonJhair/app_java_calculator-ip
+   git clone https://github.com/JheysonJhair/app_java_calculator-ip.git
    cd app_java_calculator-ip
