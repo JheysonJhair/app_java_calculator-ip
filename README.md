@@ -1,40 +1,31 @@
 <div align="center">
-    <a href="https://github.com/JheysonJhair/calculator_ip.git">
-      <img src="public/logo.jpg" width="148px" />
+    <a href="https://github.com/JheysonJhair/ip_calculator.git">
+      <img src="public/Logo.png" width="108px" />
     </a>
-    <h1>Unamba - Calculadora ip</h1>
+    <h1>JhairDev - Calculadora IP</h1>
     <p align="center">
         Full Stack Developer Jhair
     </p>
 </div>
 
-## Preview
-
 ![Preview](public/preview.png)
 
+# Calculadora de IP
 
-## Tecnologías
+Bienvenido a la **Calculadora de IP**, una aplicación que facilita el cálculo de direcciones IP, máscaras de subred y otros parámetros relacionados con redes. Esta herramienta permite realizar cálculos de red de manera rápida y precisa.
 
-Este proyecto utiliza las siguientes tecnologías:
+## Tecnologías Utilizadas
 
-- Java
+- **Java**: El lenguaje principal utilizado para implementar la lógica de la aplicación.
 
-## Cómo levantar el proyecto
+---
 
-1. Clona el repositorio.
+## Instalación
 
-```bash
-git clone https://github.com/JheysonJhair/calculator_ip.git
-```
+1. **Requisitos previos**:
+   - Tener instalado **Java JDK 17** o superior.
 
-```bash
-cd calculator_ip
-```
-
-2. Ejecuta tu entorno de desarrollo para java y abre el proyecto
-
-3. Establece como proyecto de inicio `appdetailsip/AppdetailsIP.java`.
-
-4. Ejecuta la aplicación.
-
-¡Listo! Ahora puedes comenzar a trabajar en la aplicación sin problemas.
+2. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/usuario/ip_calculator.git
+   cd ip_calculator
