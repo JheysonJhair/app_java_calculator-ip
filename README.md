@@ -27,5 +27,5 @@ Bienvenido a la **Calculadora de IP**, una aplicación que facilita el cálculo 
 
 2. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/usuario/ip_calculator.git
-   cd ip_calculator
+   git clone https://github.com/JheysonJhair/app_java_calculator-ip
+   cd app_java_calculator-ip
